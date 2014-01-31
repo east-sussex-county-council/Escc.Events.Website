@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<configuration>
+    <appSettings/>
+    <connectionStrings>
+        <add name="Events_Reader" connectionString=""/>
+        <add name="Events_Submitter" connectionString=""/>
+    </connectionStrings>
+    <EsccWebTeam.NavigationControls>
+        <Paging>
+            <add key="PageSize" value="4"/>
+        </Paging>
+        <ProgressBar>
+            <add key="What?" value="/leisureandtourism/whatson/add/default.aspx?event={0}"/>
+            <add key="When?" value="/leisureandtourism/whatson/add/page2.aspx?event={0}"/>
+            <add key="Where?" value="/leisureandtourism/whatson/add/page3.aspx?event={0}"/>
+            <add key="Who?" value="/leisureandtourism/whatson/add/page4.aspx?event={0}"/>
+            <add key="Check" value="/leisureandtourism/whatson/add/confirm.aspx?event={0}"/>
+        </ProgressBar>
+    </EsccWebTeam.NavigationControls>
+    
+    <system.web>
+        <compilation defaultLanguage="c#" debug="true" targetFramework="4.0">
+            <assemblies>
+                <add assembly="Microsoft.ContentManagement.Common, Version=5.0.1200.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+                <add assembly="Microsoft.ContentManagement.Publishing, Version=5.0.1200.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+                <add assembly="Microsoft.ContentManagement.Publishing.Extensions.Placeholders, Version=5.0.1200.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+                <add assembly="Microsoft.ContentManagement.Publishing.Extensions.Placeholders.Office, Version=5.0.1200.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+                <add assembly="Microsoft.ContentManagement.Web, Version=5.0.1200.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+                <add assembly="Microsoft.ContentManagement.WebAuthor, Version=5.0.1200.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+                <add assembly="Microsoft.ContentManagement.WebControls, Version=5.0.1200.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+                <add assembly="Microsoft.Web.UI.WebControls, Version=1.0.2.226, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+            </assemblies>
+        </compilation>
+
+        <authentication mode="Windows"/>
+
+        <httpModules>
+            <add type="Microsoft.ContentManagement.Web.Security.CmsAuthorizationModule, Microsoft.ContentManagement.Web, Version=5.0.1200.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" name="CmsAuthorizationModule"/>
+            <add type="Microsoft.ContentManagement.Web.CmsEndRequestModule, Microsoft.ContentManagement.Web, Version=5.0.1200.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" name="CmsEndRequestModule"/>
+            <add type="Microsoft.ContentManagement.Publishing.Events.PostingEventsModule, Microsoft.ContentManagement.Publishing, Version=5.0.1200.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" name="CmsPosting"/>
+            <add type="Microsoft.ContentManagement.Web.Caching.CmsCacheModule, Microsoft.ContentManagement.Web, Version=5.0.1200.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" name="CmsCacheModule"/>
+        </httpModules>
+
+        <httpRuntime requestValidationMode="2.0"/>
+        <pages enableSessionState="true" enableViewState="true" enableViewStateMac="true" validateRequest="false" clientIDMode="AutoID" masterPageFile="path to master page">
+            <controls>
+                <add tagPrefix="CmsTemplates" tagName="Related" src="path to user control"/>
+                <add tagPrefix="Events" namespace="EsccWebTeam.Events.Common" assembly="EsccWebTeam.Events.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f"/>
+                <!-- Add controls which are declared at root of site, repeated here in dev only for Visual Studio intellisense-->
+                <add tagPrefix="CmsWebAuthor" tagName="Console" src="path to usercontrol"/>
+                <add tagPrefix="FormControls" namespace="eastsussexgovuk.webservices.FormControls" assembly="EsccWebTeam.FormControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f" />
+                <add tagPrefix="NavigationControls" namespace="EsccWebTeam.NavigationControls" assembly="EsccWebTeam.NavigationControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f"/>
+            </controls>
+        </pages>
+        <xhtmlConformance mode="Strict"/>
+    </system.web>
+</configuration>

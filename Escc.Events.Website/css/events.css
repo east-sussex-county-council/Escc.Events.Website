@@ -1,0 +1,31 @@
+﻿/* Events landing page 
+   For .featuredEvent margin + border + padding = one 18px line
+*/
+.introSection, .featuredEvent { width: 100%; overflow: hidden; }
+
+.captionedImage { float: right; margin: 0 0 1.384615em 1.384615em; }
+.captionedImage img { display: block; }
+.captionedImage p { margin: 0; }
+
+.featuredEvent { border-bottom: 1px solid #ccc; padding: 0 0 .615385em; margin: 0 0 .692308em 0; }
+.featuredEvent img { float: right; margin: -1.384615em 0 1.384615em 1.384615em; }
+
+/* List of events - each event must contain its image */
+.eventSummary { overflow: hidden; width: 100%; }
+.eventSummary img { float: right; margin: .692308em 0 .692308em 1.384615em; }
+
+/* Display event - display image on right, but not too far */
+.eventControl img { float: right; margin: 0 0 1.384615em 1.384615em; }
+
+/* Add event - example image */
+.service-form img { clear: left; float: left; margin-right: 1.863354%; }
+
+/* Date form - relative positioning on labels containing radio buttons (rather than adjacent to them) makes the radio buttons line up */
+.ie6 .radioButtonList label { position: relative; }
+.ie6 .radioButtonList label.aural { position: absolute; }
+
+/* Date form - this radio button is just in a strange place! */
+.ie6 #ctl00_content_dateEdit_ctl16 { left: -59px; }
+
+/* Applying hasLayout here stops overlap problems as content is shown or hidden */
+.ie67 .formBox { display: inline-block; }
