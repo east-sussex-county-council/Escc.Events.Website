@@ -29,6 +29,12 @@
     <UseIISExpress>false</UseIISExpress>
     <TargetFrameworkProfile />
     <AssemblyOriginatorKeyFile>s:\_strong names\esccdev.snk</AssemblyOriginatorKeyFile>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Solution files\eastsussex.gov.uk solutions\EsccWebTeam.Website.Solution\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,6 +60,9 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Escc.AddressAndPersonalDetails">
+      <HintPath>..\..\..\Solution files\eastsussex.gov.uk solutions\EsccWebTeam.Website.Solution\packages\Escc.AddressAndPersonalDetails.1.0.0\lib\Escc.AddressAndPersonalDetails.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ContentManagement.Common, Version=5.0.1200.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Program Files\Microsoft Content Management Server\Server\bin\Microsoft.ContentManagement.Common.dll</HintPath>
@@ -230,19 +239,19 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\VS Projects\_Libraries for re-use\EsccWebTeam.Data.Web\EsccWebTeam.Data.Web.csproj">
+    <ProjectReference Include="..\..\Escc.Data.Web\EsccWebTeam.Data.Web.csproj">
       <Project>{9C56D3DD-4952-4A1B-9AD6-907A1142872F}</Project>
       <Name>EsccWebTeam.Data.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Inetpub\wwwroot\eastsussex.gov.uk.csproj">
+    <ProjectReference Include="..\..\Escc.EastSussexGovUK\EsccWebTeam.EastSussexGovUK.csproj">
       <Project>{1426FEF0-23DC-4C23-AE15-67F2527BD741}</Project>
-      <Name>eastsussex.gov.uk</Name>
+      <Name>EsccWebTeam.EastSussexGovUK</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Inetpub\wwwroot\EastSussexCC\EsccWebTeam.EastSussexCC.csproj">
       <Project>{F25413A1-BC31-4C5B-AF23-9E249F49B97E}</Project>
       <Name>EsccWebTeam.EastSussexCC</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\VS Projects\eastsussex.gov.uk projects\EsccWebTeam.Cms\EsccWebTeam.Cms.csproj">
+    <ProjectReference Include="..\..\Escc.Cms\EsccWebTeam.Cms.csproj">
       <Project>{6710E9EE-DEAB-4569-ACE6-F10159D6D447}</Project>
       <Name>EsccWebTeam.Cms</Name>
     </ProjectReference>
@@ -250,23 +259,19 @@
       <Project>{2B6D79F3-934E-49B6-B185-36F469BD907E}</Project>
       <Name>EsccWebTeam.Cms.WebAuthor</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\VS Projects\_Standards\E-Government Metadata Standard %28E-GMS%29\EsccWebTeam.Egms\EsccWebTeam.Egms.csproj">
+    <ProjectReference Include="..\..\Escc.Egms\EsccWebTeam.Egms.csproj">
       <Project>{78083DCB-B12F-4950-86C5-3A844D8604F3}</Project>
       <Name>EsccWebTeam.Egms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\VS Projects\_Libraries for re-use\EsccWebTeam.FormControls\EsccWebTeam.FormControls.csproj">
+    <ProjectReference Include="..\..\Escc.FormControls\EsccWebTeam.FormControls.csproj">
       <Project>{E6D5883F-99CE-4BF5-974A-66C542C43CFB}</Project>
       <Name>EsccWebTeam.FormControls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\VS Projects\_Standards\EsccWebTeam.Gdsc\EsccWebTeam.Gdsc.csproj">
-      <Project>{A0024354-DD16-43E1-8574-176F8BA4F1CA}</Project>
-      <Name>EsccWebTeam.Gdsc</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\VS Projects\_Libraries for re-use\EsccWebTeam.HouseStyle\EsccWebTeam.HouseStyle.csproj">
+    <ProjectReference Include="..\..\Escc.HouseStyle\EsccWebTeam.HouseStyle.csproj">
       <Project>{1C429378-DBF2-4AF7-88AC-C059AA163682}</Project>
       <Name>EsccWebTeam.HouseStyle</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\VS Projects\_Libraries for re-use\EsccWebTeam.NavigationControls\EsccWebTeam.NavigationControls.csproj">
+    <ProjectReference Include="..\..\Escc.NavigationControls\EsccWebTeam.NavigationControls.csproj">
       <Project>{0323F668-1723-44A1-8C94-F91DC59EF315}</Project>
       <Name>EsccWebTeam.NavigationControls</Name>
     </ProjectReference>
@@ -283,6 +288,7 @@
     <Folder Include="js\min\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="packages.config" />
     <None Include="Web.config.example" />
   </ItemGroup>
   <PropertyGroup>
@@ -327,4 +333,11 @@ if "$(ConfigurationName)" == "Release" del "$(ProjectDir)js\min\*.*" /Q
 if "$(ConfigurationName)" == "Release" java -jar "$(ProjectDir)yuicompressor-2.4.6.jar" "$(ProjectDir)js/contacts.js" &gt; "$(ProjectDir)js/min/contacts.js"
 if "$(ConfigurationName)" == "Release" java -jar "$(ProjectDir)yuicompressor-2.4.6.jar" "$(ProjectDir)js/recurrence.js" &gt; "$(ProjectDir)js/min/recurrence.js"</PostBuildEvent>
   </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
 </Project>
